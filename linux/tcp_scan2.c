@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 		servaddr.sin_port = htons(port); //set the portno
 		memcpy(&servaddr.sin_addr, hostaddr->h_addr, hostaddr->h_length);
 
-		sock = socket(AF_INET, SOCK_STREAM, 0);  //created the ip socket
+		sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);  //created the ip socket
 		if (sock == -1) {
 			perror("Socket()\n");
 			return (errno);
@@ -54,8 +54,8 @@ int main(int argc, char **argv)
 
 		FD_ZERO(&fdset);
 		FD_SET(sock, &fdset);
-		tv.tv_sec = 0;             /* 10 second timeout */
-		tv.tv_usec = 500;
+		tv.tv_sec = 1;             /* 10 second timeout */
+		tv.tv_usec = 0;
 
 		if (select(sock + 1, NULL, &fdset, NULL, &tv) == 1)
 		{

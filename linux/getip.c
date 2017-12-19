@@ -6,6 +6,8 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 
+// strcpy(s, inet_ntoa(*((struct in_addr*)h->h_addr)));
+
 int get_ip(char *  , char *);
 
 int main(int argc , char *argv[])
